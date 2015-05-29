@@ -711,6 +711,8 @@ bool AdvancedOutput::StartRecording()
 	if (!ffmpegRecording) {
 		const char *path = config_get_string(main->Config(),
 				"AdvOut", "RecFilePath");
+		const char *format = config_get_string(main->Config(),
+				"AdvOut", "RecFormat");
 
 		os_dir_t *dir = path ? os_opendir(path) : nullptr;
 
@@ -730,7 +732,7 @@ bool AdvancedOutput::StartRecording()
 		if (lastChar != '/' && lastChar != '\\')
 			strPath += "/";
 
-		strPath += GenerateTimeDateFilename("flv");
+		strPath += GenerateTimeDateFilename(format);
 
 		obs_data_t *settings = obs_data_create();
 		obs_data_set_string(settings, "path", strPath.c_str());

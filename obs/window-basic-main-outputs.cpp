@@ -235,7 +235,7 @@ bool SimpleOutput::StartRecording()
 	if (lastChar != '/' && lastChar != '\\')
 		strPath += "/";
 
-	strPath += GenerateTimeDateFilename("flv");
+	strPath += GenerateTimeDateFilename("mp4");
 
 	SetupOutputs();
 

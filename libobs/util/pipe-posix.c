@@ -46,12 +46,16 @@ os_process_pipe_t *os_process_pipe_create(const char *cmd_line,
 	return out;
 }
 
-void os_process_pipe_destroy(os_process_pipe_t *pp)
+int os_process_pipe_destroy(os_process_pipe_t *pp)
 {
+	int ret = -1;
+
 	if (pp) {
-		pclose(pp->file);
+		ret = pclose(pp->file);
 		bfree(pp);
 	}
+
+	return ret;
 }
 
 size_t os_process_pipe_read(os_process_pipe_t *pp, uint8_t *data, size_t len)
